@@ -49,13 +49,26 @@ denes <- denes %>%
 
 # New solution since map() was creating problems
 # Looping into each pgn and applying history_detail function
-ceiling <- max(denes$game_id)
+denes %>% 
+  filter(White == "denes7") %>% 
+  mutate(game_id = row_number()) %>% 
+  rename(pgn = Movetext) -> white
+
+denes %>% 
+  filter(Black == "denes7") %>% 
+  mutate(game_id = row_number()) %>% 
+  rename(pgn = Movetext) -> black
+
+# Select which side are you
+side <- white
+
+ceiling <- max(side$game_id)
 games <- data.frame()
 
 
 for (i in 1:ceiling){
   
-  a <- denes[i,13] 
+  a <- side[i,13] 
   chss <- Chess$new()
   b <- chss$load_pgn(a)
   c <- chss$history_detail()
