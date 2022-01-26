@@ -31,19 +31,46 @@ denes <- denes %>%
   mutate(game_id = row_number()) %>% 
   rename(pgn = Movetext)
 
-test <- denes %>% filter(game_id <= 50, ECO != "?")
+
+# DEPRECATED #
+# test <- denes %>% filter(game_id <= 100, ECO != "?")
+# 
+# dfmoves <- test %>% 
+#   select(game_id, pgn) %>% 
+#   mutate(
+#     data = map(pgn, function(p) {
+#       chss <- Chess$new()
+#       chss$load_pgn(p)
+#       chss$history_detail()
+#     })
+#   ) %>% select(-pgn) %>% 
+#   unnest()
 
 
-dfmoves <- test %>% 
-  select(game_id, pgn) %>% 
-  mutate(
-    data = map(pgn, function(p) {
-      chss <- Chess$new()
-      chss$load_pgn(p)
-      chss$history_detail()
-    })
-  ) %>% select(-pgn) %>% 
-  unnest()
+# New solution since map() was creating problems
+# Looping into each pgn and applying history_detail function
+ceiling <- max(denes$game_id)
+games <- data.frame()
+
+
+for (i in 1:ceiling){
+  
+  a <- denes[i,13] 
+  chss <- Chess$new()
+  b <- chss$load_pgn(a)
+  c <- chss$history_detail()
+  
+  d <- data.frame(c)
+  
+  games <- rbind(games,d)
+  
+  #print(i)
+}
+
+
+dfmoves <- games %>% unnest()
+
+
 
 
 # Taking the board directly from rchess
