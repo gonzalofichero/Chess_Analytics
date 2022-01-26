@@ -7,7 +7,7 @@ library(rchess)
 
 
 # Import own pgn file from Lichess (up to 20220117)
-denes <- read.pgn("lichess_denes7_2022-01-17.pgn",
+denes <- read.pgn("lichess_denes7_2020-11-24.pgn",
                   add.tags = c("WhiteElo", "BlackElo", "ECO", "Opening", "Termination"))
 
 glimpse(denes)
@@ -31,7 +31,7 @@ denes <- denes %>%
   mutate(game_id = row_number()) %>% 
   rename(pgn = Movetext)
 
-test <- denes %>% filter(game_id <= 150, ECO != "?")
+test <- denes %>% filter(game_id <= 50, ECO != "?")
 
 
 dfmoves <- test %>% 
@@ -66,7 +66,7 @@ dfpaths <- dfmoves %>%
     x_gt_y_equal_xy_sign = x_gt_y == xy_sign)
 
 
-# f1 Bishop movement
+# White Queen movement
 
 pieces <- "White Queen"
 
@@ -86,7 +86,7 @@ ggplot() +
     position = position_jitter(width = 0.2, height = 0.2),
     curvature = 0.50,
     angle = -45,
-    alpha = 0.02,
+    alpha = 0.15,
     color = "white",
     size = 1.05
   ) +
@@ -101,7 +101,7 @@ ggplot() +
     position = position_jitter(width = 0.2, height = 0.2),
     curvature = -0.50,
     angle = 45,
-    alpha = 0.02,
+    alpha = 0.15,
     color = "white",
     size = 1.05
   ) +
