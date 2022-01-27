@@ -123,7 +123,7 @@ ggplot() +
       xend = x.to,
       yend = y.to
     ),
-    position = position_jitter(width = 0.2, height = 0.2),
+    position = position_jitter(width = 0.1, height = 0.1),
     curvature = 0.50,
     angle = -45,
     alpha = 0.15,
@@ -138,7 +138,7 @@ ggplot() +
       xend = x.to,
       yend = y.to
     ),
-    position = position_jitter(width = 0.2, height = 0.2),
+    position = position_jitter(width = 0.1, height = 0.1),
     curvature = -0.50,
     angle = 45,
     alpha = 0.15,
@@ -149,6 +149,9 @@ ggplot() +
   ggtitle("White Queen") +
   guides(fill = "none") +
   labs(y= "", x = "") +
+  scale_x_discrete( breaks = c(1,2,3,4,5,6,7,8),
+                    labels = c("1","2","3","4","5","6","7","8")) +
+  scale_y_discrete(labels = c("a","b","c","d","e","f","g","h")) +
   coord_equal()
 
 
