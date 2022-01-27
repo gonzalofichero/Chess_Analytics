@@ -147,7 +147,8 @@ ggplot() +
   ) +
   scale_fill_manual(values =  c("gray10", "gray20")) +
   ggtitle("White Queen") +
-  
+  guides(fill = "none") +
+  labs(y= "", x = "") +
   coord_equal()
 
 
