@@ -149,9 +149,9 @@ ggplot() +
   ggtitle(pieces) +
   guides(fill = "none") +
   labs(y= "", x = "") +
-  scale_x_discrete( breaks = c(1,2,3,4,5,6,7,8),
-                    labels = c("1","2","3","4","5","6","7","8")) +
-  scale_y_discrete(labels = c("a","b","c","d","e","f","g","h")) +
+  #scale_x_discrete(labels = as.character(dfboard$x), breaks = dfboard$x) +
+  #scale_y_discrete(labels = c("a" = 1 ,"b" = 2,"c" = 3,"d" = 4,
+  #                            "e" = 5,"f" = 6,"g" = 7,"h" = 8)) +
   coord_equal()
 
 
