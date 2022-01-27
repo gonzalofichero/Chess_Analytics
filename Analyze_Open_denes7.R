@@ -146,7 +146,7 @@ ggplot() +
     size = 1.05
   ) +
   scale_fill_manual(values =  c("gray10", "gray20")) +
-  ggtitle("White Queen") +
+  ggtitle(pieces) +
   guides(fill = "none") +
   labs(y= "", x = "") +
   scale_x_discrete( breaks = c(1,2,3,4,5,6,7,8),
